@@ -1,7 +1,8 @@
 import time
 
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+
+
 
 import logging
 
@@ -30,18 +31,16 @@ def test_01_login_pos():
 
     signup_ele.click()
 
-    # after this there is some delay to navigate to next page/next tab..hence we need some wait time
+    # after this there is some delay to navigate to next page/next tab..hence we need some wait time ,now we can add Explicit wait here
 
-    time.sleep(4)
+    # for next tab title
 
-    # lets log something here
+    WebDriverWait(driver,10).until(
+        EC.text_to_be_present_in_element((By.CSS_SELECTOR,".page-heading"),"Dashboard")
+    )
 
-    Logger.info("Title is " +driver.title)
-
-    #Now verify that are we navigate to Dashboard tab or not
-
-    assert "Dashboard" in driver.title
-
+    page_heading_element = driver.find_element(By.CSS_SELECTOR, ".page-heading")
+    assert "Dashboard" in page_heading_element.text
 
 
  #Now I want to check for negative testcase by giving invalid email/pswrd
