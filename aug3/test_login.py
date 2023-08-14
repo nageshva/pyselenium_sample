@@ -6,6 +6,11 @@ from selenium import webdriver
 
 import logging
 
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+
+
 def test_01_login_pos():
     Logger=logging.getLogger(__name__)
     # create the session -webdriver
