@@ -20,15 +20,19 @@ def test_window():
     # count=len(suggestion_list)
     # print(count)
     for item in search_results:
+        print(item.text)
         item.click()
         # driver.back()
         time.sleep(2)
 
-        windowIDs = driver.window_handles
-        for winid in windowIDs:
-            driver.switch_to.window(winid)
-            time.sleep(2)
-            print(driver.title)
+    windowIDs = driver.window_handles
+    print(windowIDs)
+    for winid in windowIDs:
+        driver.switch_to.window(winid)
+        time.sleep(2)
+        print(winid,driver.title,driver.current_url)
+        if driver.title=="Selenium disulfide":
+            driver.close()
             time.sleep(5)
 
 

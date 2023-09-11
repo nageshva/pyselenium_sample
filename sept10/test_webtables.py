@@ -20,16 +20,17 @@ def test_webtable():
     #//div[@class='oxd-table-header']//div[@role='columnheader'][]
 
     rows=driver.find_elements(By.XPATH,"//div[@class='oxd-table orangehrm-employee-list']//div[@class='oxd-table-card']//div[@role='row']")
-    cols=driver.find_elements(By.XPATH,"//div[@class='oxd-table-header']//div[@role='columnheader']")
+    cols=driver.find_elements(By.XPATH,"//div[@role='table']/div[2]/div[1]/div/div")
     print(len(rows),len(cols))
 
-    count=0
-    for i in range(1,len(rows)+1):
-        #for j in range(1,len(cols)+1):
-            table_data=driver.find_element(By.XPATH,"//div[@class='oxd-table orangehrm-employee-list']//div[@class='oxd-table-card']["+str(i)+"]//div[@role='row']").text
-            #dept_name=driver.find_element(By.XPATH,"//div[@class='oxd-table-header']//div[@role='columnheader']["+str(j)+"]").text
-            #print(dept_name)
-            if table_data=="Quality Assurance":
-                count+=1
+    count = 0
+    for i in range(1,len(rows)):
 
-    print(count)
+        first_name=driver.find_element(By.XPATH,"//div[@role='table']/div[2]/div["+str(i)+"]/div/div[3]").text
+
+        job_title=driver.find_element(By.XPATH,"//div[@role='table']/div[2]/div["+str(i)+"]/div/div[5]").text
+        if job_title=="QA Engineer":
+
+            print("Hi I'm ",first_name ,"Im doing ",job_title)
+            count+=1
+    print("No of QA are ",count)
